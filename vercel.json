@@ -4,6 +4,10 @@
     {
       "source": "/api/search",
       "destination": "https://openlibrary.org/search.json"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
     }
   ],
   "headers": [
