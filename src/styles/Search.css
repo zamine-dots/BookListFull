@@ -1,0 +1,17 @@
+.Search-container {
+  background: radial-gradient(circle at top, #1a1a1a 0%, #000000 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  
+}
+
+.books-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* space between cards */
+  justify-content: center; /* optional: center the cards */
+  margin-top: 20px;
+}
