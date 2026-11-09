@@ -1,6 +1,5 @@
-import React, { use } from 'react'
 import { Link ,useNavigate} from 'react-router-dom';
-import { useAuth } from '../utils/AuthContext';
+import { useAuth } from '../utils/auth-context';
 import '../styles/home.css';
 function Home() {
   const {logoutUser}=useAuth()

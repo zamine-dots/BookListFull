@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure Bootstrap is 
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../utils/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../utils/auth-context';
 function Login() {
   const {user,loginUser}=useAuth()
   const nav=useNavigate()

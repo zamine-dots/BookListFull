@@ -1,8 +1,8 @@
-import React, { useContext, createContext, useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { account, databases } from '../lib/appwrite';
 import { ID, Query } from 'appwrite';
-
-const AuthContext = createContext();
+import { AuthContext } from './auth-context';
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -65,14 +65,14 @@ export function AuthProvider({ children }) {
     try {
       const accountDetails = await account.get();
       setUser(accountDetails);
-    } catch (error) {
+    } catch {
       setUser(null); // not logged in
     } finally {
       setLoading(false);
     }
   };
 
-  const getFavBooks = async () => {
+  const getFavBooks = useCallback(async () => {
     try {
       const accountDetails = await account.get();
       const userID = accountDetails.$id;
@@ -87,7 +87,7 @@ export function AuthProvider({ children }) {
       console.error('Fetching favorite books failed:', error);
       return [];
     }
-  };
+  }, []);
 
   const addfavbook = async (bookInfo, heart) => {
     try {
@@ -123,8 +123,10 @@ export function AuthProvider({ children }) {
 
         console.log('Book removed from favorites.');
       }
+      return true;
     } catch (error) {
       console.error('addfavbook error:', error);
+      return false;
     }
   };
 
@@ -144,6 +146,4 @@ export function AuthProvider({ children }) {
   );
 }
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
+AuthProvider.propTypes = { children: PropTypes.node.isRequired };

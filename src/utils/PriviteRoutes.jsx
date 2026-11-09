@@ -1,7 +1,6 @@
 import { Outlet,Navigate } from "react-router-dom";
 
-import React from 'react'
-import { useAuth } from "./AuthContext";
+import { useAuth } from "./auth-context";
 
 function PriviteRoutes() {
     const {user}=useAuth()

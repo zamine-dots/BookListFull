@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import "../styles/Search.css";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import BookCard from './BookCard';
-import { useAuth } from '../utils/AuthContext';
+import { useAuth } from '../utils/auth-context';
 
 function Search({ placeholder = "Search for Book..." }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -72,7 +73,7 @@ function Search({ placeholder = "Search for Book..." }) {
         {loading && <p>Searching...</p>}
         {error && <p className="error">{error}</p>}
         {!loading && error === "" && books.length === 0 && searchTerm && (
-          <p>No books found for "{searchTerm}"</p>
+          <p>No books found for &quot;{searchTerm}&quot;</p>
         )}
         {books.length > 0 && books.map((book) => (
           <BookCard key={book.key || book.cover_i || book.title} bok={book} />
@@ -81,5 +82,7 @@ function Search({ placeholder = "Search for Book..." }) {
     </div>
   );
 }
+
+Search.propTypes = { placeholder: PropTypes.string };
 
 export default Search;

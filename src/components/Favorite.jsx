@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useAuth } from '../utils/AuthContext';
+import { useEffect, useState } from 'react';
+import { useAuth } from '../utils/auth-context';
 import "../styles/Search.css";
 import BookCard from './BookCard';
 
@@ -12,7 +12,6 @@ function Favorite() {
     async function fetchFavorites() {
       try {
         const favBooks = await getFavBooks(); // Await in case it's async
-        console.log(favBooks)
         setBooks(favBooks);
       } catch (err) {
         console.error("Failed to fetch favorite books:", err);
@@ -22,7 +21,7 @@ function Favorite() {
     }
 
     fetchFavorites();
-  }, []);
+  }, [getFavBooks]);
 
   return (
     <div className="results books-grid">
